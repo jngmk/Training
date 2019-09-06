@@ -9,17 +9,18 @@ beaten = []
 
 def is_wall():
     global r, c, d
-    if r == 0 and d == 1:
+    if r == 1 and d == 1:
         d += 1
-    elif r == R-1 and d == 2:
+    elif r == R and d == 2:
         d -= 1
-    elif c == 0 and d == 4:
+    elif c == 1 and d == 4:
         d -= 1
-    elif c == C-1 and d == 3:
+    elif c == C and d == 3:
         d += 1
 
 
 for person in range(1, C+1):
+    print(sharks)
     # person 의 위치와 가장 가까운 상어 포획
     min_r = R+1
     for shark in range(len(sharks)):
@@ -28,20 +29,17 @@ for person in range(1, C+1):
             if min_r > r:
                 min_r = r
                 idx = shark
+        # 상어 이동
+        for _ in range(s):
+            r, c, s, d, z = sharks[shark]
+            is_wall()
+            dx = xx[d]
+            dy = yy[d]
+            sharks[shark] = [r + dx, c + dy, s, d, z]
+            print(sharks)
     if min_r < R+1:
         gotcha += sharks[idx][4]
         sharks.pop(idx)
-
-    # 상어 이동
-    for m in range(C):
-        for shark in range(len(sharks)):
-            r, c, s, d, z = sharks[shark]
-            for _ in range(s):
-                r, c, s, d, z = sharks[shark]
-                is_wall()
-                dx = xx[d]
-                dy = yy[d]
-                sharks[shark] = [r + dx, c + dy, s, d, z]
 
     # 상어 포식
     position = {}
@@ -68,5 +66,7 @@ for person in range(1, C+1):
     beaten = sorted(beaten)
     while beaten:
         sharks.pop(beaten.pop())
+
+    print(gotcha)
 
 print(gotcha)

@@ -1,4 +1,3 @@
-# 시간초과
 R, C, M = map(int, input().split())
 sharks = [list(map(int, input().split())) for _ in range(M)]
 xx = [0, -1, 1, 0, 0]
@@ -7,21 +6,76 @@ gotcha = 0
 beaten = []
 
 
-def is_wall():  # c -1 로 모듈러
-    global r, c, d
-    if d == 1:
-        move = r -1
-        s = s - move
-        d += 1
-        r = s - (r - 1)
-        if r > 6:
+def moving(rr, cc, ss, dd, zz):  # c -1 로 모듈러
+    if dd == 1:
+        move = rr - 1
+        if ss > move:
+            sss = ss - move
+            if sss >= R - 1:
+                a, b = divmod(sss, R - 1)
+                if a % 2 == 1:
+                    rr = R - b
+                else:
+                    rr = 1 + b
+                    dd = 2
+            else:
+                rr = 1 + sss
+                dd = 2
+        else:
+            rr = rr - ss
 
-    elif r == R and d == 2:
-        d -= 1
-    elif c == 1 and d == 4:
-        d -= 1
-    elif c == C and d == 3:
-        d += 1
+    elif dd == 2:
+        move = R - rr
+        if ss > move:
+            sss = ss - move
+            if sss >= R - 1:
+                a, b = divmod(sss, R - 1)
+                if a % 2 == 1:
+                    rr = 1 + b
+                else:
+                    rr = R - b
+                    dd = 1
+            else:
+                rr = R - sss
+                dd = 1
+        else:
+            rr = rr + ss
+
+    elif dd == 3:
+        move = C - cc
+        if ss > move:
+            sss = ss - move
+            if sss >= C - 1:
+                a, b = divmod(sss, C - 1)
+                if a % 2 == 1:
+                    cc = 1 + b
+                else:
+                    cc = C - b
+                    dd = 4
+            else:
+                cc = C - sss
+                dd = 4
+        else:
+            cc = cc + ss
+
+    elif dd == 4:
+        move = cc - 1
+        if ss > move:
+            sss = ss - move
+            if sss >= C - 1:
+                a, b = divmod(sss, C - 1)
+                if a % 2 == 1:
+                    cc = C - b
+                else:
+                    cc = 1 + b
+                    dd = 3
+            else:
+                cc = 1 + sss
+                dd = 3
+        else:
+            cc = cc - ss
+
+    return [rr, cc, ss, dd, zz]
 
 
 for person in range(1, C+1):
@@ -36,18 +90,11 @@ for person in range(1, C+1):
     if min_r < R+1:
         gotcha += sharks[idx][4]
         sharks.pop(idx)
-    print('------------------------')
-    print(sharks)
-    print(person, gotcha)
 
-    # 상어 이동(줄여야할 부분)
+    # 상어 이동
     for shark in range(len(sharks)):
         r, c, s, d, z = sharks[shark]
-        is_wall()
-        dx = xx[d]
-        dy = yy[d]
-        sharks[shark] = [r + dx, c + dy, s, d, z]
-        print(sharks)
+        sharks[shark] = moving(r, c, s, d, z)
 
     # 상어 포식
     position = {}
@@ -70,10 +117,9 @@ for person in range(1, C+1):
                     big_idx = p[pp]
                 else:
                     beaten.append(p[pp])
-    print(beaten)
+
     beaten = sorted(beaten)
     while beaten:
         sharks.pop(beaten.pop())
-    print(sharks)
 
 print(gotcha)
