@@ -91,4 +91,4 @@ for dense in dusts.values():
 
 print(amount)
 
-s = sorted(list_name, key=lambda list_in_arr: list_in_arr[-1])
+# s = sorted(list_name, key=lambda list_in_arr: list_in_arr[-1])
