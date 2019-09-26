@@ -1,58 +1,44 @@
-def puzzle(papers, temp1, visited, is_zero, puzzle_cnt):
-    global array, min_puzzle
+def puzzle(papers, visited, puzzle_cnt):
+    global min_puzzle, impossible
     s, e = visited
     for a in range(s, 10):
-        for b in range(e, 10):
+        for b in range(10):
             if array[a][b] == 1:
-                print(a, b)
-                is_zero = False
-                for i in range(6):
-                    possible = False
-                    if papers[i] > 0:
-                        if change(a, b, i):
-                            possible = True
-                            next_paper = papers[:]
-                            next_paper[i] -= 1
-                            print(next_paper)
-                            print(papers)
-                            # print(array)
-                            puzzle(next_paper, temp2, (a, b), is_zero, puzzle_cnt + 1)
-                            for aa, bb in temp1:
+                impossible = True
+                for i in range(5, 0, -1):
+                    if papers[i] > 0 and change(a, b, i):
+                        papers[i] -= 1
+                        for aa in range(a, a+i):
+                            for bb in range(b, b+i):
+                                array[aa][bb] = 0
+                        puzzle(papers, (a, b), puzzle_cnt + 1)
+                        for aa in range(a, a+i):
+                            for bb in range(b, b+i):
                                 array[aa][bb] = 1
-                        else:
-                            continue
-                if possible is False:
-                    continue
-
-    if is_zero is False and puzzle_cnt == 0:
-        min_puzzle = -1
-
-    elif min_puzzle > puzzle_cnt:
+                        papers[i] += 1
+                return
+    if min_puzzle > puzzle_cnt:
         min_puzzle = puzzle_cnt
-        return
+    return
 
 
-def change(a, b, size):
-    global temp2, array
-    temp2 = []
-    cnt = 0
-    if a + size >= 10 or b + size >= 10:
+def change(aa, bb, size):
+    if aa + size > 10 or bb + size > 10:
         return False
 
     for da in range(size):
         for db in range(size):
-            if array[a+da][b+db] == 1:
-                cnt += 1
-                temp2.append((a+da, b+db))
-    if cnt == size * size:
-        for aa, bb in temp2:
-            array[aa][bb] = -size
-        return True
+            if array[aa + da][bb + db] != 1:
+                return False
+
+    return True
 
 
 array = [list(map(int, input().split())) for _ in range(10)]
-temp2 = []
 min_puzzle = 999
-puzzle([0, 5, 5, 5, 5, 5], [], (0, 0), True, 0)
+impossible = False
+puzzle([0, 5, 5, 5, 5, 5], (0, 0), 0)
+if min_puzzle == 999:
+    min_puzzle = -1
 
 print(min_puzzle)
