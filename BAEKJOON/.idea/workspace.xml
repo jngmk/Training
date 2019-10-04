@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92d9ce98-13bf-4701-9555-773c430ad584" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="92d9ce98-13bf-4701-9555-773c430ad584" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,20 +12,30 @@
     <session id="-1097808044">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.0" value="2" />
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="3" />
+          <entry key="py" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="3" />
+          <entry key="Python" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="3084" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="3084" />
         </counts>
       </usages-collector>
     </session>
@@ -37,18 +45,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/17471 게리맨더링/17471.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/15684 사다리조작/15684.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+            <state relative-caret-position="-14">
+              <caret line="18" column="35" lean-forward="true" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+              <folding>
+                <marker date="1570178559421" expanded="true" signature="533:799" ph="..." />
+              </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/17136 색종이 붙이기/17136.py">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -63,11 +69,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="541" />
-    <option name="y" value="131" />
-    <option name="width" value="1240" />
-    <option name="height" value="862" />
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/5373 큐빙/5373.py" />
+        <option value="$PROJECT_DIR$/15684 사다리조작/15684.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="352" />
+    <option name="y" value="90" />
+    <option name="width" value="1541" />
+    <option name="height" value="950" />
   </component>
   <component name="ProjectId" id="1Pjj5dyoWbatd3ux7lNNiXOG02F" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -95,7 +109,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -106,22 +119,13 @@
             <path>
               <item name="BAEKJOON" type="b2602c69:ProjectViewProjectNode" />
               <item name="BAEKJOON" type="462c0819:PsiDirectoryNode" />
-              <item name="17136 색종이 붙이기" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BAEKJOON" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BAEKJOON" type="462c0819:PsiDirectoryNode" />
-              <item name="17471 게리맨더링" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BAEKJOON" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BAEKJOON" type="462c0819:PsiDirectoryNode" />
-              <item name="17472 다리만들기2" type="462c0819:PsiDirectoryNode" />
+              <item name="15684 사다리조작" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -142,7 +146,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.17472-1">
+  <component name="RunManager" selected="Python.15684">
     <configuration name="14501" type="PythonConfigurationType" factoryName="Python">
       <module name="BAEKJOON" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -165,19 +169,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="17136" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="15684" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="BAEKJOON" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\jeong\Desktop\jngmk\python\SSAFY\Training\BAEKJOON\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/17136 색종이 붙이기" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/15684 사다리조작" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/17136 색종이 붙이기/17136.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/15684 사다리조작/15684.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -315,6 +319,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="5373" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="BAEKJOON" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/5373 큐빙" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/5373 큐빙/5373.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="6988" type="PythonConfigurationType" factoryName="Python">
       <module name="BAEKJOON" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -337,46 +362,25 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="temp1" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="BAEKJOON" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/17136 색종이 붙이기" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/17136 색종이 붙이기/temp1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.14501" />
       <item itemvalue="Python.2635" />
       <item itemvalue="Python.2468" />
       <item itemvalue="Python.6988" />
       <item itemvalue="Python.17143-1" />
-      <item itemvalue="Python.17136" />
       <item itemvalue="Python.17472" />
       <item itemvalue="Python.17472-1" />
       <item itemvalue="Python.17471" />
-      <item itemvalue="Python.temp1" />
+      <item itemvalue="Python.5373" />
+      <item itemvalue="Python.15684" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.15684" />
+        <item itemvalue="Python.5373" />
         <item itemvalue="Python.17472-1" />
         <item itemvalue="Python.17472" />
         <item itemvalue="Python.17471" />
-        <item itemvalue="Python.temp1" />
-        <item itemvalue="Python.17136" />
       </list>
     </recent_temporary>
   </component>
@@ -417,15 +421,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="541" y="131" width="1240" height="862" extended-state="1" />
-    <editor active="true" />
+    <frame x="352" y="90" width="1541" height="950" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24958402" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1996008" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4404908" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -576,6 +579,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/17136 색종이 붙이기/17136.py">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/5373 큐빙/5373.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+          <folding>
+            <marker date="1570168179031" expanded="true" signature="13:380" ph="..." />
+            <marker date="1570168179031" expanded="true" signature="2459:2976" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/15684 사다리조작/15684.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-14">
+          <caret line="18" column="35" lean-forward="true" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+          <folding>
+            <marker date="1570178559421" expanded="true" signature="533:799" ph="..." />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
