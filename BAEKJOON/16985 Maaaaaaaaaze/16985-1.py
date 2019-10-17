@@ -1,4 +1,5 @@
 from itertools import permutations
+from collections import deque
 
 
 def rotate(n):
@@ -36,38 +37,45 @@ def rotate(n):
         rotate_arr[n].append(tmp1)
 
 
-def solve(x, y, z, cnt):
+def solve():
     global result
     r = {0: e, 1: d, 2: c, 3: b, 4: a}
-    if (x, y, z) == (4, 4, 4):
-        result = min(result, cnt)
-        return
-    if cnt >= result:
-        return
-    else:
+    visited = [[[-1] * 5 for _ in range(5)] for _ in range(5)]
+    visited[0][0][0] = 0
+    q.append([0, 0, 0])
+    result = 125
+    while True:
+        # print(q)
+        if not q:
+            break
+        x, y, z = q.popleft()
+        cnt = visited[x][y][z]
+        # print(cnt)
+        if (x, y, z) == (4, 4, 4):
+            result = min(result, cnt)
+            break
+        if cnt >= result:
+            continue
         for di in range(6):
             if 0 <= x+dx[di] < 5 and 0 <= y+dy[di] < 5 and 0 <= z+dz[di] < 5:
                 vx = x + dx[di]; vy = y + dy[di]; vz = z + dz[di]
-                if not visited[vx][vy][vz]:
+                # print(vx, vy, vz)
+                if visited[vx][vy][vz] == -1:
                     if rotate_arr[order[vz]][r[vz]][vx][vy]:
-                        visited[vx][vy][vz] = 1
-                        solve(vx, vy, vz, cnt+1)
-                        visited[vx][vy][vz] = 0
+                        visited[vx][vy][vz] = cnt + 1
+                        q.append([vx, vy, vz])
 
 
-dx = [-1, 0, 1, 0, 0, 0]
-dy = [0, 1, 0, -1, 0, 0]
-dz = [0, 0, 0, 0, 1, -1]
+dx, dy, dz = [-1, 0, 1, 0, 0, 0], [0, 1, 0, -1, 0, 0], [0, 0, 0, 0, 1, -1]
 arr = [[list(map(int, input().split())) for _ in range(5)] for _ in range(5)]
 rotate_arr = {}
+q = deque()
 for idx in range(5):
     rotate_arr.update({idx: []})
-visited = [[[0] * 5 for _ in range(5)] for _ in range(5)]
-visited[0][0][0] = 1
 result = 125
 for zz in range(5):
     rotate(zz)
-
+# print(rotate_arr)
 ordering = list(permutations(list(range(5)), 5))
 for order in ordering:
     if result == 12: break
@@ -82,5 +90,5 @@ for order in ordering:
                     for e in range(len(rotate_arr[order[0]])):
                         if result == 12: break
                         if rotate_arr[order[0]][e][0][0] and rotate_arr[order[4]][a][4][4]:
-                            solve(0, 0, 0, 0)
+                            solve()
 print(result if result != 125 else -1)
