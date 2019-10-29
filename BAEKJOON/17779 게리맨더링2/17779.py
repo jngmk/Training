@@ -1,7 +1,7 @@
 def region1():
     tmp1 = 0
     cnt = -1
-    for x in range(a+d1, -1, -1):
+    for x in range(a+d1-1, -1, -1):
         cnt += 1
         for y in range(b-d1+cnt, -1, -1):
             if a > x and y > b:
@@ -16,7 +16,7 @@ def region2():
     for y in range(b+1, N):
         cnt += 1
         for x in range(a+cnt, -1, -1):
-            if b < y and x > a:
+            if b+d2 < y and x > a+d2:
                 continue
             tmp1 += arr[x][y]
     return tmp1
@@ -67,7 +67,7 @@ for a in range(N-2):
                     max_r = max(r1, r2, r3, r4, total-(r1+r2+r3+r4))
                     min_r = min(r1, r2, r3, r4, total-(r1+r2+r3+r4))
                     result = min(result, max_r-min_r)
-                    print(result, a, b, d1, d2)
+                    # print(result, r1, r2, r3, r4, total-(r1+r2+r3+r4), a, b, d1, d2)
                 if result == 0:break
             if result == 0: break
         if result == 0: break
