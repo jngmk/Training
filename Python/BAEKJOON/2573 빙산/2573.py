@@ -5,7 +5,6 @@ result = 0
 stack = [0] * N * M
 top = -1
 
-
 while True:
     if count >= 2:
         break

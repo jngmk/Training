@@ -29,8 +29,7 @@ def game(copy_arr, k, broken, visited):
     global max_broken
     if k == N:
         if broken <= max_broken: return
-        max_broken = max(max_broken, broken)
-        # pprint(copy_arr)
+
         return
     else:
         for w in range(W):

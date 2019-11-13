@@ -1,58 +1,35 @@
+from collections import deque
 import sys
 sys.stdin = open('input.txt')
 
 for tc in range(1, int(input())+1):
     N = int(input())
-    temp1 = list(map(int, input().split()))
+    operators = list(map(int, input().split()))  # '+', '-', '*', '//'
     num_arr = list(map(int, input().split()))
-    temp2 = ['+', '-', '*', '//']
-    operator = []
-    result = []
     max_num = -1000000000
     min_num = 1000000000
-    is_visited = [0] * (N-1)
-    for n in range(4):
-        operator += [temp2[n]] * temp1[n]
-
-
-    def perm(k, temp):
-        global result
-        if k == N-1:
-            result.append(temp)
-        else:
-            for i in range(N-1):
-                if is_visited[i]:
-                    continue
-                is_visited[i] = 1
-                perm(k+1, temp + [operator[i]])
-                is_visited[i] = 0
-
-
-    def calc(n1, n2, oper):
-        if oper == '+':
-            return n1 + n2
-        elif oper == '-':
-            return n1 - n2
-        elif oper == '*':
-            return n1 * n2
-        else:
-            if n1 < 0:
-                n1 = -n1
-                return -(n1 // n2)
+    q = deque([[num_arr[0], 1, operators]])
+    while q:
+        num, k, operators = q.popleft()
+        if k == N:
+            max_num = max(max_num, num)
+            min_num = min(min_num, num)
+            continue
+        for i in range(4):
+            if operators[i] == 0: continue
+            if i == 0:
+                tmp_num = num + num_arr[k]
+            elif i == 1:
+                tmp_num = num - num_arr[k]
+            elif i == 2:
+                tmp_num = num * num_arr[k]
             else:
-                return n1 // n2
-
-
-    perm(0, [])
-    for op in result:
-        base = num_arr[0]
-        for i in range(1, N):
-            base = calc(base, num_arr[i], op[i-1])
-        if max_num < base:
-            max_num = base
-            res1 = op
-        if min_num > base:
-            min_num = base
-            res2 = op
+                if num * num_arr[k] < 0:
+                    tmp_num = ((num * (-1)) // num_arr[k]) * (-1)
+                else:
+                    tmp_num = num // num_arr[k]
+            operators[i] -= 1
+            q.append([tmp_num, k+1, operators[:]])
+            operators[i] += 1
 
     print('#{} {}'.format(tc, max_num-min_num))
