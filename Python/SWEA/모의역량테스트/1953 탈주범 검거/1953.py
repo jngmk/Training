@@ -29,9 +29,8 @@ for tc in range(1, int(input())+1):
             if visited[va][vb]: continue
             if arr[va][vb] not in connected[arr[a][b]][d]: continue
             if cnt+1 > L: continue
-            # print(va, vb)
+
             q.append([va, vb, cnt+1])
             visited[va][vb] = 1
             result += 1
     print('#{} {}'.format(tc, result))
-    # break

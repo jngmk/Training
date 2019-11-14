@@ -1,6 +1,5 @@
 N = int(input())
 array = [list(map(int, input().split()))for _ in range(N)]
-# print(array)
 pipe = 'a'
 now1, now2 = (0, 1)
 cnt = 0
