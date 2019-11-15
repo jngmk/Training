@@ -24,6 +24,7 @@ while True:
         break
     # 1번말 부터 진행
     for i in range(K):
+        print(turn, i)
         a, b, d = h[i]
         if flag:
             break

@@ -1,3 +1,4 @@
+# 정답 코드
 import sys
 sys.stdin = open('input.txt')
 
@@ -11,11 +12,9 @@ for tc in range(1, int(input())+1):
                 for db in range(1, N-b):
                     aa, bb = a+da+db, b-da+db
                     if not (aa < N and 0 <= bb < N): continue
-                    # print(a, b, aa, bb)
                     if arr[aa][bb] == arr[a][b]: continue
                     tmp = [arr[a][b], arr[aa][bb]]
                     visited = [(a, b), (aa, bb)]
-                    # print(da, db)
                     n = (aa-a) * 2
                     for d1 in range(1, da+1):
                         for d2 in range(1, db+1):
@@ -24,10 +23,7 @@ for tc in range(1, int(input())+1):
                                 if arr[va][vb] in tmp: continue
                                 tmp.append(arr[va][vb])
                                 visited.append((va, vb))
-                                # print(va, vb)
-                    # print(tmp, n)
                     if len(tmp) == n:
                         result = max(result, len(tmp))
 
     print('#{} {}'.format(tc, result if result else -1))
-    # break
