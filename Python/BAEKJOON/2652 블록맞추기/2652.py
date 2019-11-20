@@ -1,209 +1,137 @@
-# 미결
+from collections import deque
+
+
+def indexing(r, c):
+    global idx, arr
+    rr, cc = r, c
+    idx += 1
+    q = deque([[r, c]])
+    arr[r][c] = idx
+    while q:
+        aa, bb = q.popleft()
+        for da, db in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+            va, vb = aa+da, bb+db
+            if not (0 <= va < N and 0 <= vb < N): continue
+            if arr[va][vb] == idx or arr[va][vb] == 0: continue
+            arr[va][vb] = idx
+            q.append([va, vb])
+            rr, cc = max(rr, va), max(cc, vb)
+    return rr-r+1, cc-c+1
+
+
+def check():
+    # 위, 아래, 왼쪽, 오른쪽
+    if state == 1:
+        tmp = [[0] * width for _ in range(height + v)]
+        if width != u: return False
+        for a in range(aaa, aaa - height - v, -1):
+            for b in range(bbb, bbb-width, -1):
+                if not (0 <= a < N and 0 <= b < N): return False
+                ta, tb = aaa-a, bbb-b
+                if not arr[a][b]: tmp[ta][tb] = 1
+    elif state == 2:
+        tmp = [[0] * width for _ in range(height + v)]
+        if width != u: return False
+        for a in range(aa, aa + height + v):
+            for b in range(bb, bb + width):
+                if not (0 <= a < N and 0 <= b < N): return False
+                ta, tb = a - aa, b - bb
+                if not arr[a][b]: tmp[ta][tb] = 1
+    elif state == 3:
+        tmp = [[0] * height for _ in range(width + v)]
+        if height != u: return False
+        for b in range(bbb, bbb - width - v, -1):
+            for a in range(aa, aa + height):
+                if not (0 <= a < N and 0 <= b < N): return False
+                ta, tb = bbb - b, a - aa
+                if not arr[a][b]: tmp[ta][tb] = 1
+    elif state == 4:
+        tmp = [[0] * height for _ in range(width + v)]
+        if height != u: return False
+        for b in range(bb, bb + width + v):
+            for a in range(aaa, aaa - height, -1):
+                if not (0 <= a < N and 0 <= b < N): return False
+                ta, tb = b - bb, aaa - a
+                if not arr[a][b]: tmp[ta][tb] = 1
+    th = len(tmp)
+    ph, pw = len(puzzle), len(puzzle[0])
+    row = 0
+    flag = False
+    for a in range(th):
+        if (a-row) >= ph: return False
+        if not flag and sum(tmp[a]) == 0:
+            row += 1
+            continue
+        flag = True
+        for b in range(pw):
+            if puzzle[a-row][b] != tmp[a][b]:
+                return False
+    return True
+
+
 N = int(input())
 u, v, w, x, y = map(int, input().split())
-array = [[0] * (N+2)]
-array += [[0] + list(map(int, input().split())) + [0] for _ in range(N)]
-array += [[0] * (N+2)]
-is_visited = [[0] * (N+2) for _ in range(N+2)]
-da = [-1, 0, 1, 0]
-db = [0, 1, 0, -1]
-result = []
+arr = [list(map(int, input().split())) for _ in range(N)]
+idx = 1
+squares = []
+puzzle = [[0] * u for _ in range(x+v)]
+result = 0
+result_arr = []
 
+# 퍼즐
+for a in range(x+v):
+    for b in range(u):
+        if a < x and w <= b < w+y:
+            puzzle[a][b] = 1
+        elif a >= x:
+            puzzle[a][b] = 1
 
-def check_type(aa, bb):
-    b_type = 0
-    sa, sb = aa, bb
-    while True:
-        if array[aa][bb+db[1]] == 1:
-            aa, bb = aa, bb+1
-        else:
-            d1 = bb
-            break
-
-    while True:
-        if array[aa+da[2]][bb] == 1:
-            aa, bb = aa+1, bb
-        else:
-            c1 = aa
-            break
-
-    while True:
-        if array[sa+da[2]][sb] == 1:
-            sa, sb = sa+1, sb
-        else:
-            c2 = sa
-            break
-
-    while True:
-        if array[sa][sb+db[1]] == 1:
-            sa, sb = sa, sb+1
-        else:
-            d2 = sb
-            break
-
-    if c1 != c2:
-        if c2 > c1:
-            b_type = 2
-            ee = [c2, d1]
-        else:
-            b_type = 4
-            ee = [c1, d1]
-    elif d1 != d2:
-        if d2 > d1:
-            b_type = 3
-            ee = [c1, d2]
-        else:
-            b_type = 1
-            ee = [c1, d1]
-
-    return b_type, ee
-
-
-def match_block(b_shape, s, e):
-    if b_shape == 1:
-        if e[1] - s[1] + 1 != u:
-            return 0
-        for aa in range(s[0], e[0]+1):
-            for bb in range(s[1], e[1]+1):
-                if array[aa][bb] == 0:
-                    sa, sb = aa, bb
-                    break
-        if sb - s[1] != w:
-            return 0
-        if sa + x != e[0]:
-            return 0
-        for aa in range(sa, sa+y):
-            for bb in range(sb, sb+x):
-                if array[aa][bb] == 1:
-                    return 0
-                else:
-                    array[aa][bb] = 1
-
-
+# 시작점, 가로, 세로 저장
 for a in range(N):
     for b in range(N):
-        if array[a][b] == 1 and not is_visited[a][b]:
-            sa0, sb0 = a, b
-            shape, end = check_type(a, b)
-            ea0, eb0 = end
-            temp = []
-            if shape == 1:
-                for a1 in range(sa0, ea0+1):
-                    for b1 in range(sb0, eb0+1):
-                        is_visited[a1][b1] = 1
-                        if array[a1][b1] == 0:
-                            temp.append((a1, b1))
+        if arr[a][b] == 1:
+            height, width = indexing(a, b)
+            squares.append([a, b, width, height])
 
-                if ea0+1+v > N+1:
-                    check = 0
-                else:
-                    for a1 in range(ea0+1, ea0+1+v):
-                        for b1 in range(sb0, eb0+1):
-                            if array[a1][b1] == 1:
-                                check = 0
-                                break
-                        break
+# 어느쪽이 뚫려 있는지
+for square in squares:
+    aa, bb, width, height = square
+    aaa, bbb = aa + height - 1, bb + width - 1
+    # 위, 아래, 왼쪽, 오른쪽
+    state = 0
+    if state == 0:
+        vaa, vbb = aaa, bbb
+        va, vb = aa, bb
+        for _ in range(width-1):
+            # down
+            vaa, vbb = vaa, vbb-1
+            if arr[vaa][vbb] == 0:
+                state = 2
+                break
+            # up
+            va, vb = va, vb+1
+            if arr[va][vb] == 0:
+                state = 1
+                break
+    if state == 0:
+        vaa, vbb = aaa, bbb
+        va, vb = aa, bb
+        for _ in range(height - 1):
+            # right
+            vaa, vbb = vaa-1, vbb
+            if arr[vaa][vbb] == 0:
+                state = 4
+                break
+            # left
+            va, vb = va+1, vb
+            if arr[va][vb] == 0:
+                state = 3
+                break
+    if state == 0: continue
+    if check():
+        result += 1
+        result_arr.append([aa, bb])
 
-                    sa1, sb1 = temp[0]
-                    ea1, eb1 = temp[-1]
-                    check = 1
-                    if ea1 - sa1 + 1 != x:
-                        check = 0
-                    elif eb1 - sb1 + 1 != y:
-                        check = 0
-                    elif sb1 - sb0 != w:
-                        check = 0
-                    elif eb0 - sb0 + 1 != u:
-                        check = 0
-
-            elif shape == 2:
-                for b1 in range(sb0, eb0 + 1):
-                    for a1 in range(ea0, sa0-1, -1):
-                        is_visited[a1][b1] = 1
-                        if array[a1][b1] == 0:
-                            temp.append((a1, b1))
-                if eb0+1+v > N+1:
-                    check = 0
-                else:
-                    for b1 in range(eb0+1, eb0+1+v):
-                        for a1 in range(ea0, sa0-1, -1):
-                            if array[a1][b1] == 1:
-                                check = 0
-                                break
-                        break
-
-                    sa1, sb1 = temp[0]
-                    ea1, eb1 = temp[-1]
-                    check = 1
-                    if sa1 - ea1 + 1 != y:
-                        check = 0
-                    elif eb1 - sb1 + 1 != x:
-                        check = 0
-                    elif ea0 - sa1 != w:
-                        check = 0
-                    elif ea0 - sa0 + 1 != u:
-                        check = 0
-
-            elif shape == 3:
-                for a1 in range(ea0, sa0-1, -1):
-                    for b1 in range(eb0, sb0-1, -1):
-                        is_visited[a1][b1] = 1
-                        if array[a1][b1] == 0:
-                            temp.append((a1, b1))
-
-                if sa0-1-v < 1:
-                    check = 0
-                else:
-                    for a1 in range(sa0-1, sa0-1-v, -1):
-                        for b1 in range(eb0, sb0-1, -1):
-                            if array[a1][b1] == 1:
-                                check = 0
-                                break
-                        break
-
-                    sa1, sb1 = temp[0]
-                    ea1, eb1 = temp[-1]
-                    check = 1
-                    if sa1 - ea1 + 1 != x:
-                        check = 0
-                    elif sb1 - eb1 + 1 != y:
-                        check = 0
-                    elif eb0 - sb1 != w:
-                        check = 0
-                    elif eb0 - sb0 + 1 != u:
-                        check = 0
-
-            elif shape == 4:
-                for b1 in range(eb0, sb0-1, -1):
-                    for a1 in range(sa0, ea0+1):
-                        is_visited[a1][b1] = 1
-                        if array[a1][b1] == 0:
-                            temp.append((a1, b1))
-                if sb0-1-v < 1:
-                    check = 0
-                else:
-                    for b1 in range(sb0-1, sb0-1-v, -1):
-                        for a1 in range(sa0, ea0+1):
-                            if array[a1][b1] == 1:
-                                check = 0
-                                break
-                        break
-
-                    sa1, sb1 = temp[0]
-                    ea1, eb1 = temp[-1]
-                    check = 1
-                    if ea1 - sa1 + 1 != y:
-                        check = 0
-                    elif sb1 - eb1 + 1 != x:
-                        check = 0
-                    elif sa1 - sa0 != w:
-                        check = 0
-                    elif ea0 - sa0 + 1 != u:
-                        check = 0
-
-            if check == 1:
-                result.append(str(sa0)+' '+str(sb0))
-
-print(len(result))
-for res in result:
-    print(res)
+print(result)
+for a, b in result_arr:
+    print(a+1, b+1)
