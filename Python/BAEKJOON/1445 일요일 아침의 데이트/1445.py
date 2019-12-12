@@ -31,9 +31,9 @@ while garbage:
 # 탐색
 angry, upset = 2500, 2500
 visited[s1][s2] = 1
-pos = [[0, 0, 0, s1, s2]]  # angry, upset, move priority, pos
+pos = [[0, 0, s1, s2]]  # angry, upset, pos
 while pos:
-    p, a, u, n, m = heappop(pos)
+    a, u, n, m = heappop(pos)
 
     if angry * 10000 + upset < a * 10000 + u: continue
 
@@ -52,6 +52,6 @@ while pos:
         if visited[nn][nm] <= visit: continue
 
         visited[nn][nm] = visit
-        heappush(pos, [p+1, aa, uu, nn, nm])
+        heappush(pos, [aa, uu, nn, nm])
 
 print(angry, upset)
