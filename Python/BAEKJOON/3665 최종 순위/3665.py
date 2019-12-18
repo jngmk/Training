@@ -1,5 +1,6 @@
 import sys
 input = sys.stdin.readline
+from collections import deque
 
 T = int(input())
 for _ in range(T):
@@ -21,7 +22,7 @@ for _ in range(T):
         else:
             arr[a-1][b-1] = 1; arr[b-1][a-1] = 0
             indegrees[b-1] += 1; indegrees[a-1] -= 1
-    q, result = [], []
+    q, result = deque(), []
     for i in range(N):
         if indegrees[i] == 0:
             q.append(i)
@@ -29,7 +30,7 @@ for _ in range(T):
     while True:
         if not q: print('IMPOSSIBLE'); break
         if len(q) > 1: print('?'); break
-        v = q.pop(0)
+        v = q.popleft()
         result.append(str(v+1))
         if len(result) == N: print(' '.join(result)); break
         for i in range(N):
