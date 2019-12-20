@@ -1,4 +1,3 @@
-# 시간 초과
 from heapq import heappop, heappush
 
 
