@@ -5,7 +5,7 @@ def solution(key, lock):
     key2 = [[key[a][b] for a in range(M-1, -1, -1)] for b in range(M)]
     key3 = [[key[a][b] for a in range(M)] for b in range(M-1, -1, -1)]
     key4 = [[key[a][b] for a in range(M-1, -1, -1)] for b in range(M-1, -1, -1)]
-    # 빈 공간
+    # 자물쇠 빈 공간
     vacant = []
     for a in range(N):
         for b in range(N):
