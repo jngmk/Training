@@ -19,6 +19,3 @@ def solution(s):
             sentence += str(count)
         answer = min(answer, len(sentence))
     return answer
-
-
-print(solution('abcabcabcabcdededededede'))
