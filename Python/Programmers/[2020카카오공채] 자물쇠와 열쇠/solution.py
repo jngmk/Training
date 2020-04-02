@@ -68,4 +68,3 @@ def quick_sort(arr):
                 greater.append(pos)
 
     return quick_sort(lesser) + equal + quick_sort(greater)
-
