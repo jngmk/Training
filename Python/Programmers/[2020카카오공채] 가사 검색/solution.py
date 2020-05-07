@@ -1,3 +1,5 @@
+# 효율성 통과 x
+
 count = 0
 
 def solution(words, queries):
@@ -8,27 +10,19 @@ def solution(words, queries):
         now = tree
         reverse_now = reverse_tree
         for i in range(len(word)):
-            # print('now', now)
             char = word[i]
             reverse_char = word[len(word)-i-1]
-            # print('char', char)
             idx = ord(char) - 97
             reverse_idx = ord(reverse_char) - 97
-            # print('idx', idx)
             if not now.get(idx):
-                # print('##')
                 now[idx] = {}
-            # print('after', now)
             now = now[idx]
             if not reverse_now.get(reverse_idx):
-                # print('##')
                 reverse_now[reverse_idx] = {}
-            # print('after', now)
             reverse_now = reverse_now[reverse_idx]
 
         now[26] = '.'
         reverse_now[26] = '.'
-    # print(tree)
 
     prev_value = 0
     for query in queries:
