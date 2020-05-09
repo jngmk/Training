@@ -20,9 +20,6 @@ def solution(k, room_number):
     return answer
 
 
-
-
-
 dataset = [
     [10, [1,3,4,1,3,1]],
 ]
